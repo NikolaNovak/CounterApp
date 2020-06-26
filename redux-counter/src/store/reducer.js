@@ -1,27 +1,37 @@
 const initialState = {
   counter: 0,
+  results: [],
 };
 
 const reducer = (state = initialState, action) => {
-  if (action.type === "INC") {
-    return {
-      counter: state.counter + 1,
-    };
-  }
-  if (action.type === "DEC") {
-    return {
-      counter: state.counter - 1,
-    };
-  }
-  if (action.type === "ADD") {
-    return {
-      counter: state.counter + action.value,
-    };
-  }
-  if (action.type === "SUB") {
-    return {
-      counter: state.counter - action.value,
-    };
+  switch (action.type) {
+    case "INC":
+      return {
+        ...state,
+        counter: state.counter + 1,
+      };
+    case "DEC":
+      return {
+        ...state,
+        counter: state.counter - 1,
+      };
+    case "ADD":
+      return {
+        ...state,
+        counter: state.counter + 10,
+      };
+    case "SUB":
+      return {
+        ...state,
+        counter: state.counter - 15,
+      };
+    case "STR_RES":
+      return {
+        ...state,
+        results: state.results.concat({ id: new Date(), value: state.counter }),
+      };
+    default:
+      console.log("[Reducer] Oops.");
   }
   return state;
 };
