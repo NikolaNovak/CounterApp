@@ -30,6 +30,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         results: state.results.concat({ id: new Date(), value: state.counter }),
       };
+    case "DEL_RES":
+      const updatedArray = state.results.filter((result) => result.id !== action.resultElId);
+      return {
+        ...state,
+        results: updatedArray,
+      };
     default:
       console.log("[Reducer] Oops.");
   }
